@@ -28,7 +28,9 @@ def admin_panal(email,password):
                   PRESS 6: MODIFY RECORD
                   PRESS 7: SERACH RECORD
                   PRESS 8: DELETE RECORD
-                  PRESS 9: GENEREATE NOTIFICATION 
+                  PRESS 9: GENEREATE NOTIFICATION
+                  PRESS 10: BACK
+                  PRESS 11: EXIT
                 ''')
             press=int(input("ENTER YOUR INPUT:  "))
             if press==1:
@@ -388,7 +390,11 @@ JOIN bill ON user.id = bill.id and user.id= {i};
                     mydb.commit()
                 except Exception as e:
                     print(str(e))
-
+            elif press==10:
+                from admin import admin
+                admin()
+            elif press==11:
+                exit()
             
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))

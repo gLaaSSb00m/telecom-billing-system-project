@@ -1,4 +1,5 @@
 from database import *
+#from log_in import log_in
 from admin_create_account import create_account
 import re
 import mysql.connector
@@ -13,80 +14,102 @@ def admin():
         .........................
         .    2- CREATE ACCOUNT  .
         .........................
+             3- back            .
+        .........................
+             4- exit            .
+        .........................
             """)
-        
             press=int(input("Enter Your Input: "))
             if press==1:
-                def check_email(email):
-                    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-                    if re.match(pattern, email):
-                        return True
-                    else:
-                        return False
+                while(True):
+                     try:
+                            print('''
+                                1- FOR BACK
+                                2- FOR EXIT
+                                3- FOR CONTINUE
+                            ''')
+                            press=int(input("enter your input:  "))
+                            if press==1:
+                                from admin import admin
+                                admin()
+                            elif press==2:
+                                 exit()
+                            elif press==3:
+                                 
+                                def check_email(email):
+                                    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+                                    if re.match(pattern, email):
+                                        return True
+                                    else:
+                                        return False
+                                while True:
+                                    user_email = input("Enter an email address: ")
 
-                while True:
-                    user_email = input("Enter an email address: ")
+                                    if check_email(user_email):
+                                        #email check
+                                        s.execute("select email from admin")
+                                        value=s.fetchall()
+                                        found=False
+                                        for t in value:
+                                            if user_email in t:
+                                                found=True
+                                                break
+                                        if found:
+                                            print("ok")
+                                            #strat
 
-                    if check_email(user_email):
-                        #email check
-                        s.execute("select email from admin")
-                        value=s.fetchall()
-                        found=False
-                        for t in value:
-                            if user_email in t:
-                                found=True
+                                            while True:
+                                                password = input("Enter your password: ")
+
+                                                s.execute("select password from admin")
+                                                value=s.fetchall()
+                                                found=False
+                                                for t in value:
+                                                    if password in t:
+                                                        found=True
+                                                        break
+                                                if found:
+                                                    print("ok")
+                                                    break
+                                                else:
+                                                    print("""
+                                ****************Invalid password,please try again****************
+                                """)
+                                                    print()
+                                                    print()
+                                                
+                                        
+                                            break        
+                                            #end
+                                        else:
+                                            print("""
+                                ****************Invalid email address,please try again****************
+                                """)
+                                        
+                                            print()
+                                            print()
+                                            print()
+                                        
+                                        
+                                    else:
+                                        print("""
+                                ****************Invalid email address,please try again****************
+                                """)
+                                        print()
+                                        print()
+                                        print()
                                 break
-                        if found:
-                            print("ok")
-                            #strat
-
-                            while True:
-                                password = input("Enter your password: ")
-
-                                s.execute("select password from admin")
-                                value=s.fetchall()
-                                found=False
-                                for t in value:
-                                    if password in t:
-                                        found=True
-                                        break
-                                if found:
-                                    print("ok")
-                                    break
-                                else:
-                                    print("""
-                ****************Invalid password,please try again****************
-                """)
-                                    print()
-                                    print()
-                                
-                        
-                            break        
-                            #end
-                        else:
-                            print("""
-                ****************Invalid email address,please try again****************
-                """)
-                        
-                            print()
-                            print()
-                            print()
-                        
-                        
-                    else:
-                        print("""
-                ****************Invalid email address,please try again****************
-                """)
-                        print()
-                        print()
-                        print()
-                break
+                     except Exception  as e:
+                                print(str(e))
             elif press==2:
                 print()
                 print()
                 create_account()
                 break
-
+            elif press==3:
+                   return
+            elif press ==4:
+                 exit()
             else:
                         print("""
                 ****************Invalid input,please try again****************

@@ -57,7 +57,8 @@ def user_panal(email):
                                         PRESS 8: INFORMATION
                                         PRESS 9: YOU HAVE {l} NOTIFICATION
                                         PRESS 10: HISTORY OF NOTIFICATION
-
+                                        PRESS 11: BACK
+                                        PRESS 12: EXIT
                                         
                                         
                                         {no}
@@ -158,6 +159,11 @@ def user_panal(email):
                         k.append(n3)
                 for k1 in k:
                     print(k1)
+            elif press==11:
+                from user import user
+                user()
+            elif press==12:
+                exit()
 
         except Exception as e:
             print("sorry please enter a int number",str(e))

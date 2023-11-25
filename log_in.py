@@ -10,12 +10,16 @@ def log_in():
             ..................................................
             .                2. USER_LOG_IN                  .
             ..................................................
+                             0. exit                         .
+            ..................................................
             """)
             press=int(input("Enter your input: "))
             if press==1:
                 admin()
             elif press==2:
                 user()
+            elif press == 0:
+                exit()
             else:
                 print("invalid input, please try again")
                 print()
