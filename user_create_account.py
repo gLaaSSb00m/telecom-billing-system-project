@@ -8,7 +8,7 @@ def user_create_account():
                         2- FOR EXIT
                         3- FOR CONTINUE
             ''')
-                  press=int(input("ENTER THE INPUR:   "))
+                  press=int(input("ENTER THE INPUT:   "))
                   if press==1:
                         from log_in import log_in
                         log_in()
@@ -45,7 +45,7 @@ def user_create_account():
                         def check_nid(nid):
                               pattern=r'^\d{13}$'
                               if re.match(pattern,nid):
-                                    s.execute("select n_id from user")
+                                    s.execute("select nid from user")
                                     v=s.fetchall()
                                     for t in v:
                                           if nid in t:
@@ -84,8 +84,8 @@ def user_create_account():
                                     return False
 
                         def check_name(name):
-                              pattern=r'^\w{6,}$'
-                              if re.match(pattern,name):
+                              
+                              if len(name)>=6:
                                     return True
                               else:
                                     print("Name at least 6 character")
@@ -182,8 +182,12 @@ def user_create_account():
                         user=(name,password,user_email,mobile,ac_number,ac_name,nid)
                         s.execute(f,user)
                         mydb.commit()
+                        print('''
+                              ACCOUNT CREATE SUCCESSFULL
+                              THANKS FOR USING THIS PLATFROM
+
+
+
+                        ''')
             except Exception as e:
                   print(str(e))
-                              
-                              
-                              

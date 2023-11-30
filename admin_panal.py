@@ -1,12 +1,6 @@
 from  database import *
 from admin_database import *
 import re
-def check_email(email):
-    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    if re.match(pattern, email):
-        return True
-    else:
-        return False
 def admin_panal(email,password):
     while True:
         formula=f"select name from admin where email='{email}' and password={password}"
@@ -48,6 +42,7 @@ def admin_panal(email,password):
                           PRESS 2: FOR CHANGE NAME
                           PRESS 3: FOR CHANGE EMAIL
                           PRESS 4: FOR CHANGE TELEPHONE
+                          PRESS 0: FOR BACK
                         ''')
                     press=int(input("enter your input: "))
                     if press==1:
@@ -258,7 +253,12 @@ def admin_panal(email,password):
                             s.execute(formula)
                             mydb.commit()
                         except Exception as e:
-                            print(str(e)) 
+                            print(str(e))
+
+                    elif press==0:
+                        from admin_panal import admin_panal
+                        admin_panal()
+
 
 
                 
@@ -399,5 +399,4 @@ JOIN bill ON user.id = bill.id and user.id= {i};
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
 
-admin_panal("eaabid1012@gmail.com","1012")
 

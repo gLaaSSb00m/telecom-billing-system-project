@@ -55,12 +55,10 @@ def admin():
                                                 found=True
                                                 break
                                         if found:
-                                            print("ok")
-                                            #strat
 
                                             while True:
-                                                password = input("Enter your password: ")
-
+                                                from password import hide_password
+                                                password = hide_password()
                                                 s.execute("select password from admin")
                                                 value=s.fetchall()
                                                 found=False
@@ -69,7 +67,8 @@ def admin():
                                                         found=True
                                                         break
                                                 if found:
-                                                    print("ok")
+                                                    from admin_panal import admin_panal
+                                                    admin_panal(user_email,password)
                                                     break
                                                 else:
                                                     print("""
@@ -107,7 +106,8 @@ def admin():
                 create_account()
                 break
             elif press==3:
-                   return
+                   from log_in import log_in
+                   log_in()
             elif press ==4:
                  exit()
             else:
