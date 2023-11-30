@@ -1,6 +1,12 @@
 from  database import *
 from admin_database import *
 import re
+def check_email(email):
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    if re.match(pattern, email):
+        return True
+    else:
+        return False
 def admin_panal(email,password):
     while True:
         formula=f"select name from admin where email='{email}' and password={password}"
@@ -399,4 +405,4 @@ JOIN bill ON user.id = bill.id and user.id= {i};
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
 
-
+admin_panal("eaabid1012@gmail.com","1012")
