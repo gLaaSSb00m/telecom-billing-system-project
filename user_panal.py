@@ -43,6 +43,11 @@ def user_panal(email):
         l1=s.fetchall()
         for l2 in l1:
             l+=len(l2)
+        formula1="select notificationcol from noti1 where (id,email)=(%s,%s)"
+        s.execute(formula1,(id,email))
+        l1=s.fetchall()
+        for l2 in l1:
+            l+=len(l2)
 
         try:        
             print(f'''                MR. {name} thanks to you for using this platform
@@ -129,6 +134,7 @@ def user_panal(email):
                 s.execute(formula,(id,email,feed))
                 mydb.commit()
             elif press==9:
+                    
                     formula="select  notificationcol from notification where (id,email)=(%s,%s)"
                     s.execute(formula,(id,email,))
                     n1=s.fetchall()
@@ -140,12 +146,33 @@ def user_panal(email):
                             k.append(n3)
                     for k1 in k:
                         print(k1)
-                                            
+                    print('''
+
+                        notification from admin panal:  
+''')
+                    formula1="select  notificationcol from noti1 where (id,email)=(%s,%s)"
+                    s.execute(formula1,(id,email,))
+                    n1=s.fetchall()
+                    # print(f"{name} {id} {email}")
+                    # print(n1)
+                    k=[]
+                    for n2 in n1:
+                        for n3 in n2:
+                            k.append(n3)
+                    for k1 in k:
+                        print(k1)
+                                           
                     f1="insert into history_notification select * from notification where (id,email)=(%s,%s)"
                     s.execute(f1,(id,email,))
                     mydb.commit()
                     f1="delete from notification where (id,email)=(%s,%s)"
                     s.execute(f1,(id,email,))
+                    mydb.commit()
+                    f2="insert into history_notification select * from notification where (id,email)=(%s,%s)"
+                    s.execute(f2,(id,email,))
+                    mydb.commit()
+                    f2="delete from noti1 where (id,email)=(%s,%s)"
+                    s.execute(f2,(id,email,))
                     mydb.commit()
             elif press==10:
                 f1="select history_notificationcol from history_notification where (id,email)=(%s,%s)"
