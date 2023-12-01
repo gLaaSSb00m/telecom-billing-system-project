@@ -83,8 +83,9 @@ def user():
                                             value=s.fetchall()
                                             found=False
                                             for t in value:
-                                                if entered_password in t:
-                                                    found=True
+                                                for t1 in t:
+                                                    if entered_password==t1:
+                                                        found=True
                                                     break
                                             if found:
                                                 user_panal(user_email)
