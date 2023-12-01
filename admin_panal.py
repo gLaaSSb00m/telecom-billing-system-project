@@ -400,10 +400,10 @@ JOIN bill ON user.id = bill.id and user.id= {i};
 
             elif press==9:
                 def check_id(id,e):
-                    f=f"select email from id={id} "
+                    f=f"select email from user where id={id} "
                     s.execute(f)
                     r1=s.fetchall()
-                    if r1[0][1]==e:
+                    if r1[0][0]==e:
                         return True
                     else:
                         return False
@@ -414,7 +414,7 @@ JOIN bill ON user.id = bill.id and user.id= {i};
                         r1=s.fetchall()
                         for r2 in r1:
                             print(f'''
-                            id: {r2[0]} | name: {r[1]}  |   email: {r2[2]}
+                            id: {r2[0]} | name: {r2[1]}  |   email: {r2[2]}
 ''')
                         id=int(input("ENTER USER ID: "))
                         e=input("ENTER USER EMAIL:  ")
@@ -438,4 +438,3 @@ JOIN bill ON user.id = bill.id and user.id= {i};
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
 
-admin_panal("eaabid1012@gmail.com",1012)
