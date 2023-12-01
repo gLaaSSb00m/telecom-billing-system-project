@@ -3,7 +3,7 @@ from database import *
 from admin_create_account import create_account
 import re
 import mysql.connector
-conn=mysql.connector.connect(host='localhost',password='Pslle@08',user='root')
+conn=mysql.connector.connect(host='localhost',password='1234',user='root')
 def admin():
 
     while True:

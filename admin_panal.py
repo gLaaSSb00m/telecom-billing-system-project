@@ -1,3 +1,7 @@
+import stat
+
+import setuptools.package_index
+
 from  database import *
 from admin_database import *
 import re
@@ -269,7 +273,16 @@ def admin_panal(email,password):
 
                 
             elif press ==2:
-                print("generate invoice")
+                try:
+                    noti=input("ENTER YOUR NOTFICATION: ")
+                    s.execute("insert into noti1 (id,email) select distinct id,email from user")
+                    mydb.commit()
+                    formula=f'''with noti as (select distinct id from notification) update notification set notificationcol='{noti}'  where id in 
+                    (select distinct id from noti)'''
+                    s.execute(formula)
+                    mydb.commit()
+                except Exception as e:
+                    print(str(e))
 
             elif press ==3:
                 try:
@@ -386,16 +399,31 @@ JOIN bill ON user.id = bill.id and user.id= {i};
                      print(str(e))
 
             elif press==9:
-                try:
-                    noti=input("ENTER YOUR NOTFICATION: ")
-                    s.execute("insert into notification (id,email) select distinct id,email from user")
-                    mydb.commit()
-                    formula=f'''with noti as (select distinct id from notification) update notification set notificationcol='{noti}'  where id in 
-                    (select distinct id from noti)'''
-                    s.execute(formula)
-                    mydb.commit()
-                except Exception as e:
-                    print(str(e))
+                def check_id(id,email):
+                    f=f"select email from user where id={id}"
+                    s.execute(f)
+                    f1=s.fetchall(f)
+                    if not f1:
+
+                        return False
+                    else:
+                        s.close()
+                        mydb.close()
+                        return True
+                noti=input("enter your notification:        ")
+                s.execute("select id,name,email from user")
+                rs=s.fetchall()
+                for rs1 in rs:
+                        print(f'''
+                                    id: {rs1[0]}    | name: {rs1[1]} | email: {rs1[2]} 
+                            ''')
+                id1=int(input("enter user id:    "))
+                email1=input("enter user email:  ")
+
+                f = f"insert into noti1 values({id1},'{email1}','{noti}')"
+                s.execute(f)
+                mydb.commit()
+                            #print("-----------invalid id-------------------")
             elif press==10:
                 from admin import admin
                 admin()
@@ -405,4 +433,3 @@ JOIN bill ON user.id = bill.id and user.id= {i};
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
 
-admin_panal("eaabid1012@gmail.com","1012")
