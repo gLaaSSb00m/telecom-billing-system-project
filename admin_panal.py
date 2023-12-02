@@ -275,7 +275,8 @@ def admin_panal(email,password):
             elif press ==2:
                 try:
                     noti=input("ENTER YOUR NOTFICATION: ")
-                    s.execute("insert into noti1 (id,email) select distinct id,email from user")
+                    s.execute("delete from notification")
+                    s.execute("insert into notification (id,email) select distinct id,email from user")
                     mydb.commit()
                     formula=f'''with noti as (select distinct id from notification) update notification set notificationcol='{noti}'  where id in 
                     (select distinct id from noti)'''
@@ -437,4 +438,3 @@ JOIN bill ON user.id = bill.id and user.id= {i};
             
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
-

@@ -134,21 +134,20 @@ def user_panal(email):
                 s.execute(formula,(id,email,feed))
                 mydb.commit()
             elif press==9:
-                    
-                    formula="select  notificationcol from notification where (id,email)=(%s,%s)"
-                    s.execute(formula,(id,email,))
-                    n1=s.fetchall()
-                    # print(f"{name} {id} {email}")
-                    # print(n1)
-                    k=[]
-                    for n2 in n1:
-                        for n3 in n2:
-                            k.append(n3)
-                    for k1 in k:
-                        print(k1)
                     print('''
 
-                        notification from admin panal:  
+
+
+''')
+                    
+                    f=f"select notificationcol from notification where (id,email)=({id},'{email}')"
+                    s.execute(f)
+                    r=s.fetchall()
+                    for r1 in r:
+                        print(r1[0])
+                    print('''
+
+notification from admin panal:  
 ''')
                     formula1="select  notificationcol from noti1 where (id,email)=(%s,%s)"
                     s.execute(formula1,(id,email,))
@@ -183,6 +182,7 @@ def user_panal(email):
                 k=[]
                 for n2 in n1:
                     for n3 in n2:
+
                         k.append(n3)
                 for k1 in k:
                     print(k1)

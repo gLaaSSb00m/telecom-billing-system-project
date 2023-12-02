@@ -96,7 +96,16 @@ def user():
                             """)
                                                 print()
                                                 print()
-                                            
+                                                print('''
+                                                             PRESS 1: FOR BACK
+                                                             PRESS 2: FOR EXIT
+                                                             PRESS 3: FOR CONTINUE''')
+                                                p1=int(input("ENTER YOUR INPUT: "))
+                                                if p1==1:
+                                                        from admin import user
+                                                        user()
+                                                if p1==2:
+                                                    exit()
                                         break
                                         
                                         #end
@@ -108,7 +117,16 @@ def user():
                                         print()
                                         print()
                                         print()
-                                    
+                                        print('''
+                                                             PRESS 1: FOR BACK
+                                                             PRESS 2: FOR EXIT
+                                                             PRESS 3: FOR CONTINUE''')
+                                        p1=int(input("ENTER YOUR INPUT: "))
+                                        if p1==1:
+                                            from admin import user
+                                            user()
+                                        if p1==2:
+                                            exit()
                                     
                                 else:
                                     print("""
@@ -117,6 +135,16 @@ def user():
                                     print()
                                     print()
                                     print()
+                                    print('''
+                                                             PRESS 1: FOR BACK
+                                                             PRESS 2: FOR EXIT
+                                                             PRESS 3: FOR CONTINUE''')
+                                    p1=int(input("ENTER YOUR INPUT: "))
+                                    if p1==1:
+                                        from admin import user
+                                        user()
+                                    if p1==2:
+                                        exit()
                             break
                     except Exception as e:
                             print(str(e))
