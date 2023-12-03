@@ -155,7 +155,6 @@ def user():
                 print()
                 print()
                 user_create_account()
-                break
             elif press==3:
                 from log_in import log_in
                 log_in()

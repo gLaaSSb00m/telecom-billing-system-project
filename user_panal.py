@@ -146,8 +146,8 @@ def user_panal(email):
     ''')
                         p=int(input("Enter the input:   "))
                         if p==1:
-                            from admin_panal import admin_panal
-                            admin_panal()
+                            from user_panal import user_panal
+                            user_panal()
                         elif p==2:
                             exit()
                         else:
@@ -166,8 +166,8 @@ def user_panal(email):
     ''')
                         p=int(input("Enter the input:   "))
                         if p==1:
-                            from admin_panal import admin_panal
-                            admin_panal()
+                            from user_panal import user_panal
+                            user_panal()
                         elif p==2:
                             exit()
                         else:
@@ -183,8 +183,8 @@ def user_panal(email):
     ''')
                         p=int(input("Enter the input:   "))
                         if p==1:
-                            from admin_panal import admin_panal
-                            admin_panal()
+                            from user_panal import user_panal
+                            user_panal()
                         elif p==2:
                             exit()
                         else:
@@ -217,8 +217,8 @@ def user_panal(email):
     ''')
                         p=int(input("Enter the input:   "))
                         if p==1:
-                            from admin_panal import admin_panal
-                            admin_panal()
+                            from user_panal import user_panal
+                            user_panal()
                         elif p==2:
                             exit()
                         else:

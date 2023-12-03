@@ -54,7 +54,7 @@ def create_account():
                         return False
 
                 
-                ref=1012
+                #ref=1012
                 email = input("Enter your email: ")
                 while not check_email(email):
                     print("Invalid email address. Please try again.")
@@ -62,7 +62,7 @@ def create_account():
 
                 username = input("Enter your username: ")
                 while not check_username(username):
-                    print("Username should be at least 11 characters long. Please try again.")
+                    print("Username should be at least 4 characters long. Please try again.")
                     username = input("Enter your username: ")
 
                 password = input("Enter your password: ")

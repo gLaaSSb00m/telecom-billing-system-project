@@ -2,6 +2,7 @@ from database import *
 #from log_in import log_in
 from admin_create_account import create_account
 import re
+import maskpass
 import mysql.connector
 conn=mysql.connector.connect(host='localhost',password='1234',user='root')
 def admin():
@@ -57,9 +58,8 @@ def admin():
                                         if found:
 
                                             while True:
-                                                from password import hide_password
-                                                password = hide_password()
-                                                s.execute("select password from admin")
+                                                password = maskpass.askpass("Enter your password: ",mask='*')
+                                                s.execute(f"select password from admin where email='{user_email}'")
                                                 value=s.fetchall()
                                                 found=False
                                                 for t in value:
@@ -135,7 +135,7 @@ def admin():
                 print()
                 print()
                 create_account()
-                break
+                
             elif press==3:
                    from log_in import log_in
                    log_in()
@@ -150,3 +150,4 @@ def admin():
                 print()
                 print()
                 print()
+# admin()

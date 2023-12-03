@@ -11,9 +11,9 @@ def check_email(email):
         return True
     else:
         return False
-def admin_panal(email,password):
+def admin_panal(email1,password1):
     while True:
-        formula=f"select name from admin where email='{email}' and password={password}"
+        formula=f"select name from admin where email='{email1}' and password='{password1}'"
         s.execute(formula)
         r0=s.fetchall()
         name=r0[0][0]
@@ -266,7 +266,7 @@ def admin_panal(email,password):
 
                     elif press==0:
                         from admin_panal import admin_panal
-                        admin_panal()
+                        admin_panal(email1,password1)
 
 
 
@@ -296,7 +296,7 @@ def admin_panal(email,password):
                                     
                                     |ID:    {rs1[0]} |BILL_NO:   {rs1[1]} |PAYMENT:  {rs1[2]}''')
                             from admin_panal import admin_panal
-                            admin_panal()
+                            admin_panal(email1,password1)
                         i=int(i)
                         formula=f"select id, BILL_ID AS BILL_NO, payment from BILL where id={i}"
                         s.execute(formula)
@@ -308,7 +308,7 @@ def admin_panal(email,password):
                                       
                                       |ID:  {rs1[0]} |BILL_NO:   {rs1[1]} |PAYMENT:  {rs1[2]}''')
                             from admin_panal import admin_panal
-                            admin_panal()
+                            admin_panal(email1,password1)
                         else:
                             print("---------invalid id----------")
                 except Exception as e:
@@ -354,7 +354,7 @@ def admin_panal(email,password):
                             s.execute(f)
                             mydb.commit()
                             from admin_panal import admin_panal
-                            admin_panal()
+                            admin_panal(email1,password1)
                         else:
                             print("-----------INVALID ID--------------")
 
@@ -373,7 +373,7 @@ def admin_panal(email,password):
 
                         col=input('''
                                   SELECT ONE ATTRIBUTE
-                                  ENTER MODIFY COLUMN(last_date, ammount, late_fee, due, previous_due, total_ammount, payment): ''')
+    ENTER MODIFY COLUMN(last_date, ammount, late_fee, due, previous_due, total_ammount, payment): ''')
                         data=input("ENTER YOUR DATA: ")
                         bill_id=int(input("enter a bill id: "))
                         if col.lower() in ["last_date"]:
