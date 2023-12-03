@@ -73,23 +73,25 @@ def user():
                                             # Example usage
                                             while True:
                                                 entered_password = maskpass.askpass("Enter your password: ",mask='*')
+                                                #entered_password=input("enter password:  ")
                                                 if check_password(entered_password):
                                                     break
                                                 else:
                                                     print("Password must be at least 1 special character, 1 digit, 1 capital letter")
 
                                             #end
-                                            s.execute("select password from user")
-                                            value=s.fetchall()
-                                            found=False
-                                            for t in value:
-                                                for t1 in t:
-                                                    if entered_password==t1:
-                                                        found=True
+                                            s.execute("SELECT password FROM user")
+                                            rows = s.fetchall()
+                                            found = False
+                                            for row in rows:
+                                                password_from_db = row[0]  # Access the first (and only) element of the tuple
+                                                if entered_password == password_from_db:
+                                                    found = True
                                                     break
+
                                             if found:
+                                                from user_panal import user_panal
                                                 user_panal(user_email)
-                                                break
                                             else:
                                                 print("""
                             ****************Invalid password,please try again****************
@@ -169,3 +171,5 @@ def user():
                 print()
                 print()
                 print()
+
+#user()

@@ -45,7 +45,7 @@ def user_create_account():
                         def check_nid(nid):
                               pattern=r'^\d{13}$'
                               if re.match(pattern,nid):
-                                    s.execute("select nid from user")
+                                    s.execute("select nid from user(13 digit)")
                                     v=s.fetchall()
                                     for t in v:
                                           if nid in t:
