@@ -143,7 +143,6 @@ def admin_panal(email,password):
                         f1=f"update user set name='{nam}' where (id,email)=({id},'{e}')"
                         s.execute(f1)
                         mydb.commit()    
-                        break
                     elif press==3:
                         i=0
                         id=0
@@ -287,19 +286,31 @@ def admin_panal(email,password):
 
             elif press ==3:
                 try:
-                    i=input("ENTER USER ID/ALL: ")
-                    if i.lower()=="all":    
-                        s.execute("select id,bill_id as BILL_NO, payment from bill")
-                        rs=s.fetchall()
-                        for rs1 in rs:
-                            print(f"|{rs1[0]} | {rs1[1]} | {rs1[2]}")
-                    else:
+                    while(True):
+                        i=input("ENTER USER ID/ALL: ")
+                        if i.lower()=="all":    
+                            s.execute("select id,bill_id as BILL_NO, payment from bill")
+                            rs=s.fetchall()
+                            for rs1 in rs:
+                                print(f'''
+                                    
+                                    |ID:    {rs1[0]} |BILL_NO:   {rs1[1]} |PAYMENT:  {rs1[2]}''')
+                            from admin_panal import admin_panal
+                            admin_panal()
                         i=int(i)
                         formula=f"select id, BILL_ID AS BILL_NO, payment from BILL where id={i}"
                         s.execute(formula)
                         rs=s.fetchall()
-                        for rs1 in rs:
-                            print(f"|{rs1[0]} | {rs1[1]} | {rs1[2]}")
+                        if rs:
+                            for rs1 in rs:
+
+                                print(f'''
+                                      
+                                      |ID:  {rs1[0]} |BILL_NO:   {rs1[1]} |PAYMENT:  {rs1[2]}''')
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        else:
+                            print("---------invalid id----------")
                 except Exception as e:
                     print(str(e))
             elif press==4:
@@ -322,18 +333,30 @@ def admin_panal(email,password):
 
             elif press ==5:
                 try:
-                    i=int(input("ENTER USER ID: "))
-                    bill_id=int(input("ENTER BILL ID: "))
-                    last_date=input(f"ENTER LAST DATE(%yy-%mm-%dd): ")
-                    ammount=float(input("ENTER YOUR AMMOUNT: "))
-                    late_fee=float(input("ENTER USER LATE FEE: "))
-                    due=float(input("ENTER USER DUE: "))
-                    previous_due=float(input("ENTER USER PREVIOUS DUE: "))
-                    total_ammount=float(input("ENTER TOTAL AMMOUNT: "))
-                    payment=float(input("ENTER USER PAYMENT: "))
-                    formula=f"insert into bill(id,bill_id, last_date, ammount, late_fee, due, previous_due, total_ammount, payment) values ({i},{bill_id},'{last_date}',{ammount},{late_fee},{due},{previous_due},{total_ammount}, {payment} )"
-                    s.execute(formula)
-                    mydb.commit()
+                    while(True):    
+                        i=int(input("ENTER USER ID: "))
+                        f=f"select id,name,email from user where id={i}"
+                        s.execute(f)
+                        f1=s.fetchall()
+                        if f1:        
+                            bill_id=int(input("ENTER BILL ID: "))
+                            last_date=input(f"ENTER LAST DATE(%yy-%mm-%dd): ")
+                            ammount=float(input("ENTER YOUR AMMOUNT: "))
+                            late_fee=float(input("ENTER USER LATE FEE: "))
+                            previous_due=float(input("ENTER USER PREVIOUS DUE: "))
+                            total_ammount=float(input("ENTER TOTAL AMMOUNT: "))
+                            payment=float(input("ENTER USER PAYMENT: "))
+                            due=float(input("ENTER USER DUE: "))
+                            formula=f"insert into bill(id,bill_id, last_date, ammount, late_fee, due, previous_due, total_ammount, payment) values ({i},{bill_id},'{last_date}',{ammount},{late_fee},{due},{previous_due},{total_ammount}, {payment} )"
+                            s.execute(formula)
+                            mydb.commit()
+                            f=f"insert into bill_details (id,bill_id,bill_receive,due)values({i},{bill_id},{payment},{due})"
+                            s.execute(f)
+                            mydb.commit()
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        else:
+                            print("-----------INVALID ID--------------")
 
                 except Exception as e:
                     print(str(e))
@@ -348,7 +371,9 @@ def admin_panal(email,password):
                         print(f"| id: {rs1[0]} | bill_id: {rs1[1]} | last_date: {rs1[2]} | ammount: {rs1[3]} | late_fee: {rs1[4]} | due: {rs1[5]} | previous_due: {rs1[6]} | total_ammount: {rs1[7]} | payment: {rs1[8]} |")
                     while True:
 
-                        col=input("ENTER MODIFY COLUMN(last_date, ammount, late_fee, due, previous_due, total_ammount, payment): ")
+                        col=input('''
+                                  SELECT ONE ATTRIBUTE
+                                  ENTER MODIFY COLUMN(last_date, ammount, late_fee, due, previous_due, total_ammount, payment): ''')
                         data=input("ENTER YOUR DATA: ")
                         bill_id=int(input("enter a bill id: "))
                         if col.lower() in ["last_date"]:
@@ -438,3 +463,4 @@ JOIN bill ON user.id = bill.id and user.id= {i};
             
         except Exception as e:
             print("PLEASE ENTER  NUMBER",str(e))
+#admin_panal("eaabid1012@gmail.com","1012")

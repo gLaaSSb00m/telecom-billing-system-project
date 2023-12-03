@@ -150,4 +150,3 @@ def admin():
                 print()
                 print()
                 print()
-admin()
