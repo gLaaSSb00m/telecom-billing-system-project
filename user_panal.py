@@ -136,9 +136,63 @@ def user_panal(email):
                 else:
                     print("EMPTY")
             elif press ==5:
-                print("contact us")
+                from contact_us import contact_us
+                contact_us()
+                try:
+                    while(True):
+                        print('''
+                                1: for continue
+                                2: for exit
+    ''')
+                        p=int(input("Enter the input:   "))
+                        if p==1:
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        elif p==2:
+                            exit()
+                        else:
+                            print("please try again")
+                except Exception as e:
+                    print(str(e))        
+
             elif press ==6:
-                print("about us")
+                from about_us import about_us
+                about_us()
+                try:
+                    while(True):
+                        print('''
+                                1: for continue
+                                2: for exit
+    ''')
+                        p=int(input("Enter the input:   "))
+                        if p==1:
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        elif p==2:
+                            exit()
+                        else:
+                            print("please try again")
+                except Exception as e:
+                    print(str(e))        
+
+                try:
+                    while(True):
+                        print('''
+                                1: for continue
+                                2: for exit
+    ''')
+                        p=int(input("Enter the input:   "))
+                        if p==1:
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        elif p==2:
+                            exit()
+                        else:
+                            print("please try again")
+                except Exception as e:
+                    print(str(e))        
+
+                    
             elif press ==7:
                 while True:
                     print("at most 250 character")
@@ -153,7 +207,24 @@ def user_panal(email):
                 mydb.commit()
                 print("THANK YOU FOR YOUR FEEDBACK")
             elif press==8:
-                print("information")
+                from information import information
+                information()
+                try:
+                    while(True):
+                        print('''
+                                1: for continue
+                                2: for exit
+    ''')
+                        p=int(input("Enter the input:   "))
+                        if p==1:
+                            from admin_panal import admin_panal
+                            admin_panal()
+                        elif p==2:
+                            exit()
+                        else:
+                            print("please try again")
+                except Exception as e:
+                    print(str(e))
             elif press==9:
                     r=b_d(id)
                     if r:
